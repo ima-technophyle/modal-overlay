@@ -4,21 +4,27 @@ import Modal from './Modal';
 import Overlay from './Overlay';
 
 export default function Container() {
+    
+    const [overlay, setOverlay] = useState(false);
 
-    const [overlay, setOverlay] = useState(true);
+    const handleClick = (check) => {
+
+        const visible = (typeof check === "boolean" && !check) ? false : true;
+        return setOverlay(visible);
+    }
 
     return (
         <Wrapper>
 
             {overlay && 
             
-                <Overlay>
+                <Overlay handleClick = {handleClick} >
                     <Modal/>
                 </Overlay>
             }
 
             <ButtonContainer>
-                <Button>Click Me</Button>
+                <Button onClick = {handleClick} >Click Me</Button>
             </ButtonContainer>
         </Wrapper>
     )

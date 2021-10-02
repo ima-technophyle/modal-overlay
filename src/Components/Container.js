@@ -1,12 +1,22 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import Modal from './Modal';
+import Overlay from './Overlay';
 
 export default function Container() {
 
-    const [overlay, setOverlay] = useState(false);
+    const [overlay, setOverlay] = useState(true);
 
     return (
         <Wrapper>
+
+            {overlay && 
+            
+                <Overlay>
+                    <Modal/>
+                </Overlay>
+            }
+
             <ButtonContainer>
                 <Button>Click Me</Button>
             </ButtonContainer>

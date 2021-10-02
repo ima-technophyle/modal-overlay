@@ -1,16 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Overlay({children, handleClick}) {
-
-    const handleOverlay = () => {
-        handleClick(false);
-    }
-
+export default function Overlay({children, handleClick, overlayRef}) {
     return (
         <OverlayWrapper>
             {children}
-            <OverlayBG onClick = {handleOverlay}/>
+            <OverlayBG ref = {overlayRef} onClick = {handleClick}/>
         </OverlayWrapper>
     )
 }

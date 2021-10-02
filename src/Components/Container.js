@@ -1,16 +1,20 @@
-import React, {useState} from 'react'
+import React, {useRef, useState} from 'react'
 import styled from 'styled-components'
 import Modal from './Modal';
 import Overlay from './Overlay';
 
 export default function Container() {
     
+    const overlayRef = useRef(null);
+
     const [overlay, setOverlay] = useState(false);
 
-    const handleClick = (check) => {
+    const handleClick = (e) => {
 
-        const visible = (typeof check === "boolean" && !check) ? false : true;
-        return setOverlay(visible);
+        if(overlayRef.current === e.target) {
+            return setOverlay(false);
+        }
+        return setOverlay(true);
     }
 
     return (
@@ -18,7 +22,7 @@ export default function Container() {
 
             {overlay && 
             
-                <Overlay handleClick = {handleClick} >
+                <Overlay overlayRef = {overlayRef} handleClick = {handleClick} >
                     <Modal/>
                 </Overlay>
             }
